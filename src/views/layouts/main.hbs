@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://s3.amazonaws.com/builds.handlebarsjs.com/handlebars.min-v4.7.8.js"></script>
+    <!-- <link rel="shortcut icon" href="/assets/img/icon.png" type="image/png">
+ 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    
+    <script type="text/javascript" src="https://cookieconsent.popupsmart.com/src/js/popper.js"></script>
+    <script> window.start.init({ Palette: "palette6", Mode: "banner bottom", Theme: "classic", Message: "Este sitio web utiliza cookies para garantizar que obtenga la mejor experiencia en nuestro sitio web.", LinkText: "Más información", Location: "https://www.cookiesandyou.com", ButtonText: "Si,Acepto", Time: "5", })</script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>-->
+</head>
+
+<body>
+    {{>menu-top}}
+    <div class="container">
+        <div class="mode-selectors">
+            <div class="mode-selector" data-type="any">
+                <p>Any</p>
+            </div>
+            <div class="mode-selector" data-type="0">
+                <img src="/assets/img/mode_badge_osu.svg" alt="Mode badge osu!" />
+            </div>
+            <div class="mode-selector" data-type="1">
+                <img src="/assets/img/mode_badge_osu_taiko.svg" alt="Mode badge osu!Taiko" />
+            </div>
+            <div class="mode-selector" data-type="2">
+                <img src="/assets/img/mode_badge_osu_catch.svg" alt="Mode badge osu!catch" />
+            </div>
+            <div class="mode-selector" data-type="3">
+                <img src="/assets/img/mode_badge_osu_mania.svg" alt="Mode badge osu!mania" />
+            </div>
+
+            <div>
+                <p>Type of random</p>
+                <select id="type_random">
+                    <option value="any_beatmaps" selected>Any Beatmaps</option>
+                    <option value="loved_beatmaps">loved Beatmaps</option>
+                    <option value="qualified_beatmaps">qualified Beatmaps</option>
+                    <option value="ranked_beatmaps">Ranked Beatmaps</option>
+                </select>
+            </div>
+        </div>
+        {{{body}}}
+    </div>
+    {{>message}}
+    {{>footer}}
+
+    <script src="/assets/js/anime.min.js"></script>
+
+    <script type="module">
+        $(window).on("load", () => {
+            if (!$(".mode-selector").hasClass("mode-select")) {
+                $(".mode-selector").first().addClass("mode-select")
+            }
+        })
+
+
+        $(".mode-selector").on("click", (e) => {
+            if (!$(e.currentTarget).hasClass("mode-select")) {
+                $(".mode-selector").removeClass("mode-select")
+                $(e.currentTarget).addClass("mode-select")
+            }
+        })
+
+        $(".play-random").on("click", async () => {
+            var val = $(".mode-selector.mode-select").attr("data-type")
+
+            const data = await fetch("/api/v1/randomMap?" + (val ? "type=" + val : "")).then((e) => e.json()).then((e) => e)
+            
+            $(".beatmap-list").html("")
+
+            data.maps.map((beat, i) => {
+                $(".beatmap-list").append(`
+            <div class="beatmap-card">
+            <div class="beatmap-side">
+                <div class="beatmap-card-shadow"></div>
+                <img src="${beat.covers.card}" loading="lazy" alt="${beat.title}">
+            </div>
+            <div class="beatmap-title">
+                <p>${beat.title}</p>
+            </div>
+            <div class="beatmap-difficultys"></div></div>`
+                )
+     
+                beat.beatmaps.map((beatmap) => {
+                        $(".beatmap-list").find(".beatmap-difficultys").eq(i).append(
+                            `<div class="beatmap-diff-line" title="${beatmap.version} | ★ ${beatmap.difficulty_rating}" style="--diff:${beatmap.difficulty_rating_color}"></div>`)
+                })
+
+            })
+
+        })
+
+
+         /*$(".beatmap-list").find(".beatmap-difficultys").eq(i).append(
+                            `<div class="beatmap-icon beatmap-icon--beatmapset" title="${beatmap.version} | ★${beatmap.difficulty_rating}" style="--diff:${beatmap.difficulty_rating_color}">
+                <i class="fal fa-extra-mode-${beatmap.mode}"></i>
+            </div>`)*/
+    </script>
+    <!--
+    <script src="/assets/js/tippy.js"></script>
+    <script src="/assets/js/menu.js"></script>
+    <script src="/assets/js/dropdown.min.js"></script>-->
+</body>
+
+</html>

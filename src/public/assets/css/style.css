@@ -1,0 +1,416 @@
+@font-face {
+    font-family: "Exo-Medium";
+    src: url("/assets/fonts/Exo2.0-Medium.otf");
+}
+
+@font-face {
+    font-family: "Exo-Regular";
+    src: url("/assets/fonts/Exo2.0-Regular.otf");
+}
+
+/* ppy */
+@font-face {
+    font-family: "FontAwesomeExtra";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/assets/fonts/extra.7bddd427.eot");
+    src: url("/assets/fonts/extra.7bddd427.eot#iefix") format("embedded-opentype"), url("/assets/fonts/extra.53b8246c.woff2") format("woff2"), url("/assets/fonts/extra.7733ec8d.woff") format("woff"), url("/assets/fonts/extra.0bfcd4cb.ttf") format("truetype"), url("/assets/fonts/extra.aa21d911.svg#extra") format("svg")
+}
+
+[class*=" fa-extra-"],
+[class^=fa-extra-] {
+    font-family: FontAwesomeExtra;
+    font-weight: 400
+}
+
+.fa-extra-mode-osu:before {
+    content: "\e800"
+}
+
+.fa-extra-mode-fruits:before {
+    content: "\e801"
+}
+
+.fa-extra-mode-mania:before {
+    content: "\e802"
+}
+
+.fa-extra-mode-taiko:before {
+    content: "\e803"
+}
+
+.fa-extra-social-patreon:before {
+    content: "\e804"
+}
+
+.fa-extra-osu:before {
+    content: "\e805"
+}
+/* ppy */
+
+.fab,
+.fal,
+.far,
+.fas {
+    flex: none;
+}
+
+.fa,
+.fab,
+.fal,
+.far,
+.fas {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-rendering: auto;
+}
+
+*,
+:after,
+:before {
+    box-sizing: border-box;
+}
+
+.beatmap-icon {
+    color: var(--diff);
+    display: flex;
+    font-size: 22px;
+}
+
+.beatmap-icon--beatmapset {
+    font-size: 24px;
+    position: relative;
+}
+
+
+body {
+    overflow-y: overlay;
+    overflow-x: hidden;
+    background-color: #191e22;
+    font-family: "Exo-Regular";
+}
+
+* {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+label {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    display: block;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+}
+
+body,
+p,
+span,
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+p,
+span,
+h3 {
+    color: white;
+}
+
+
+
+body::-webkit-scrollbar {
+    position: absolute;
+    width: 15px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 6px;
+    border: 4px solid #1e2225;
+    background-clip: content-box;
+    min-width: 32px;
+    min-height: 32px;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.container {
+    min-height: 100vh;
+    padding: 50px;
+    padding-top: 30px;
+}
+
+/* Menu top */
+
+.menu-top {
+    width: auto;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 35px;
+    background-color: #23292e;
+}
+
+.more-view {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.github {
+    width: 40px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #55626c6c;
+}
+
+
+.beatmap-list {
+    display: flex;
+    gap: 25px;
+    overflow-y: hidden;
+    padding: 30px 15px;
+    overflow-x: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.beatmap-card {
+    min-width: 250px;
+    height: 80px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: 0.3s ease box-shadow;
+    position: relative;
+    background-color: #282829;
+    box-shadow: 0px 0px 0px 2px rgb(90, 90, 90);
+}
+
+.beatmap-card.beatmap-rare {
+    
+}
+
+
+
+
+.beatmap-card:hover {
+    box-shadow: 0px 0px 0px 3px rgb(121, 121, 121);
+}
+
+.beatmap-card:hover .beatmap-card-shadow {
+    transform: translateX(50px);
+}
+
+.beatmap-side {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 5px;
+}
+
+.beatmap-card:hover img{
+   opacity: 70%;
+}
+
+.beatmap-card img {
+    width: 100%;
+    height: 100%;
+    opacity: 50%;
+    border-radius: 5px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    transition: 0.3s ease opacity;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.beatmap-card-shadow {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 5px;
+    transition: 0.3s ease transform;
+    position: absolute;
+    z-index: 99;
+    background: linear-gradient(to right, rgba(46, 46, 46, 0), rgba(54, 54, 54, 0.5), rgb(54, 54, 54));
+}
+
+.beatmap-title {
+    width: 140px;
+    height: 100%;
+    display: flex;
+    margin-right: 10px;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 99;
+    bottom: 0;
+    position: relative;
+    float: right;
+}
+
+.beatmap-title p {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: white;
+}
+
+.beatmap-difficultys {
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    left: 0;
+    gap: 3px;
+    padding: 2px 5px;
+    top: -10px;
+    border-radius: 5px;
+    position: absolute;
+    box-shadow: 0px 1px 10px 0px #00000052;
+    background-color: #303a42d3;
+}
+.beatmap-icon {
+    border-radius: 5px;
+    padding: 5px;
+}
+.beatmap-icon:hover {
+    box-shadow: 0px 0px 0px 2px white;
+}
+
+.beatmap-diff-line {
+    width: 5px;
+    height: 13px;
+    border-radius: 5rem;
+    background-color: var(--diff);
+}
+
+
+/* Others */
+
+.play-random {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 5px 15px;
+    background-color: #282d31;
+    border-radius: 4px;
+}
+
+
+.play-random p {
+    font-size: 16px;
+    color: #ccc;
+    font-weight: 500;
+}
+
+/* Modes selector */
+
+.mode-selectors {
+    width: 100%;
+    padding: 10px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.mode-selector {
+    width: 40px;
+    height: 40px;
+    transition: 0.3s ease box-shadow;
+    padding: 5px;
+}
+
+.mode-selector:hover {
+    box-shadow: 0px 3px 0px 0px rgb(191, 74, 129);
+}
+
+.mode-selector.mode-select {
+    box-shadow: 0px 3px 0px 0px rgb(74 138 191);
+}
+
+.mode-selector img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: contain;
+    object-fit: contain;
+    -webkit-filter: invert();
+    filter: invert();
+}
+
+/* Customs */
+dot {
+    width: 10px;
+    height: 10px;
+    box-shadow: 0px 0px 0px 1px rgba(187, 187, 187, 0.419);
+    background-color: rgb(175, 175, 175);
+    border-radius: 5rem;
+}
+
+dot[data-color="true"] {
+    background-color: #6eda71;
+}
+
+/* Top Ranking Osu! */
+
+.top-ranking {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.top-rank-user {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 5px 15px;
+    background-color: #3a4956b4;
+    position: relative;
+}
+
+.top-rank-user img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0.5;
+    position: absolute;
+    z-index: -99;
+}

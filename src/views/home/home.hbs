@@ -1,0 +1,33 @@
+<div class="top-ranking">
+    {{#each ranking as |top|}}
+    <div class="top-rank-user">
+        <img src="{{top.user.avatar_url}}" loading="lazy" alt="{{top.user.username}}">
+        <p>{{top.user.username}}</p>
+        <dot data-color="{{top.user.is_online}}"></dot>
+    </div>
+    {{/each}}
+</div>
+<div class="colors"></div>
+<div class="beatmap-list">
+    {{#each beatmaps as |beat|}}
+    <div class="beatmap-card beatmap-rare">
+        <div class="beatmap-side">
+            <div class="beatmap-card-shadow"></div>
+            <img src="{{beat.covers.card}}" loading="lazy" alt="{{beat.title}}">
+        </div>
+        <div class="beatmap-title">
+            <p>{{beat.title}}</p>
+        </div>
+        <div class="beatmap-difficultys">
+            {{#each beat.beatmaps as |beatmap|}}
+            <div class="beatmap-diff-line" title="{{beatmap.version}} | ★ {{beatmap.difficulty_rating}}" style="--diff:{{beatmap.difficulty_rating_color}}"></div>
+       
+            {{/each}}
+        </div>
+    </div>
+
+    {{/each}}
+</div>
+<div class="play-random">
+    <p>Play Random</p>
+</div>

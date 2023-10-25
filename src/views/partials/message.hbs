@@ -1,0 +1,21 @@
+{{#if message_msg}}
+
+<script>
+
+    Toastify({
+        text:  "{{message_msg}}",
+        duration: 60000,
+        destination: "",
+        newWindow: true,
+        close: true,
+        className: "message-container",
+        gravity: "bottom", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "#0c0f10",
+        },
+        onClick: function () { } // Callback after click
+    }).showToast();
+</script>
+{{/if}}
