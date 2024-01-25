@@ -81,6 +81,7 @@
 
             data.maps.map((beat, i) => {
                 $(".beatmap-list").append(`
+                 <a href="https://osu.ppy.sh/beatmapsets/${beat.id}" target="_blank">
             <div class="beatmap-card">
             <div class="beatmap-side">
                 <div class="beatmap-card-shadow"></div>
@@ -89,7 +90,7 @@
             <div class="beatmap-title" title="${beat.title}">
                 <p>${beat.title}</p>
             </div>
-            <div class="beatmap-difficultys"></div></div>`
+            <div class="beatmap-difficultys"></div></div></a>`
                 )
      
                 beat.beatmaps.map((beatmap) => {
