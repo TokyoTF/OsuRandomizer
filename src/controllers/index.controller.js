@@ -30,7 +30,7 @@ indexCtrl.PostRandomMap = async (req, res) => {
       (rank ? "&s=" + rank : "")
   );
   const RandomMap = RandomKeys(Beatmaps.beatmapsets, 3, type ? type : "");
-  console.log(RandomMap[0].beatmaps);
+  
   res.send({ maps: RandomMap });
 };
 
