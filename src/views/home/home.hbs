@@ -10,6 +10,7 @@
 <div class="colors"></div>
 <div class="beatmap-list">
     {{#each beatmaps as |beat|}}
+    <a href="https://osu.ppy.sh/beatmapsets/{{beat.id}}" target="_blank">
     <div class="beatmap-card beatmap-rare">
         <div class="beatmap-side">
             <div class="beatmap-card-shadow"></div>
@@ -21,11 +22,10 @@
         <div class="beatmap-difficultys">
             {{#each beat.beatmaps as |beatmap|}}
             <div class="beatmap-diff-line" title="{{beatmap.version}} | ★ {{beatmap.difficulty_rating}}" style="--diff:{{beatmap.difficulty_rating_color}}"></div>
-       
             {{/each}}
         </div>
     </div>
-
+    </a>
     {{/each}}
 </div>
 <div class="play-random">
