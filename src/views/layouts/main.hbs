@@ -43,10 +43,10 @@
             <div>
                 <p>Type of random</p>
                 <select id="type_random">
-                    <option value="any_beatmaps" selected>Any Beatmaps</option>
-                    <option value="loved_beatmaps">loved Beatmaps</option>
-                    <option value="qualified_beatmaps">qualified Beatmaps</option>
-                    <option value="ranked_beatmaps">Ranked Beatmaps</option>
+                    <option value="any" selected>Any Beatmaps</option>
+                    <option value="loved">loved Beatmaps</option>
+                    <option value="qualified">qualified Beatmaps</option>
+                    <option value="ranked">Ranked Beatmaps</option>
                 </select>
             </div>
         </div>
@@ -73,9 +73,9 @@
         })
 
         $(".play-random").on("click", async () => {
-            var val = $(".mode-selector.mode-select").attr("data-type")
-
-            const data = await fetch("/api/v1/randomMap?" + (val ? "type=" + val : "")).then((e) => e.json()).then((e) => e)
+            var type = $(".mode-selector.mode-select").attr("data-type")
+            var rank = $("#type_random option:selected").val()
+            const data = await fetch("/api/v1/randomMap?" + (type ? "type=" + type : "") + (rank ? "&rank="+rank : "")).then((e) => e.json()).then((e) => e)
             
             $(".beatmap-list").html("")
 
@@ -86,7 +86,7 @@
                 <div class="beatmap-card-shadow"></div>
                 <img src="${beat.covers.card}" loading="lazy" alt="${beat.title}">
             </div>
-            <div class="beatmap-title">
+            <div class="beatmap-title" title="${beat.title}">
                 <p>${beat.title}</p>
             </div>
             <div class="beatmap-difficultys"></div></div>`
