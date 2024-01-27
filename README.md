@@ -9,7 +9,7 @@ https://osu-randomizer.vercel.app/
 
 * osu_clientid=""
 * osu_clientsecret=""
-* osu_redirectUri="https://github.com/TokyoTF/OsuRandomizer"
+* osu_redirectUri=""
 
 > You can get this from the https://osu.ppy.sh/ page and settings OAuth
 
